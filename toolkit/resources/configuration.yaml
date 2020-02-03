@@ -1,0 +1,484 @@
+---
+# Configuration file template
+folders:
+  source: ../src
+  resources: ../resources
+  data: ../data
+
+scripts:
+  configuration_py:
+    resource: configuration.yaml
+    location: ../resources/
+  database_py:
+    resources: database.yaml
+    location: ../resources/
+
+# database.py Configurations
+params: >-
+    DRIVER={SQL Server};
+    SERVER=vhacdwa01.vha.med.va.gov;
+    DATABASE=VE_APG;
+    TRUSTED_CONNECTION=Yes
+
+tables:
+  social_media: APG.VEO_Social_Media
+  outpatient: APG.SLP_DATA_FT_ALL
+  topics: VEO_Medallia_TA_Topic_Flat
+  board: APG.SLP_BVA_Phase2_FLAT
+  topics: APG.VEO_Medallia_TA_Topic_Flat
+  topics_std: APG.VEO_Medallia_TA_Topic_Flat_standard
+  topics_ord: APG.VEO_TA_Topic_Org
+  ta_all: APG.VEO_Medallia_TA_All
+
+columns:
+  social_media: null
+  outpatient: null
+  topics: null
+  board: 
+    - SurveyID
+    - SurveyPersonID
+    - VeteranFirstName
+    - VeteranLastName
+    - AppellantFirstName
+    - AppellantLastName
+    - DOB
+    - Cert_Date
+    - Form_9_Date
+    - Disposition
+    - RO
+    - HomePhone
+    - SSOCs
+    - HearingType
+    - WorkPhone
+    - HearingDate
+    - DecisionDate
+    - TriggerDate
+    - ProgramType
+    - VLJ
+    - AppealID
+    - HomePhoneAreaCode
+    - WorkPhoneAreaCode
+    - Docket
+    - DocketedDate
+    - NOD_RAMP_AMA_only
+    - RepresentativeName
+    - Representative
+    - PeriodOfService
+    - SurveyType
+    - MVI
+    - Age
+    - Gender
+    - race
+    - Email
+    - DisabilityPercentage
+    - State
+    - Appeal_Q1
+    - Appeal_Q2
+    - Appeal_Q3
+    - Appeal_Q4
+    - creationdate
+    - Decision_Q1
+    - Decision_Q2
+    - Decision_Q3
+    - Decision_Q4
+    - Decision_Q5
+    - Decision_Q6
+    - Feedback_Comment
+    - Feedback_Type
+    - Gender_SelfID
+    - Hearing_Q1
+    - Hearing_Q2
+    - Hearing_Q3
+    - Hearing_Q4
+    - Hearing_Q5
+    - Hearing_Q6
+    - Hearing_Q7
+    - Hearing_Q9
+    - Hearing_Q9_Other
+    - NOD_Appeal_Common_Explain
+    - NOD_Q1
+    - NOD_Q2
+    - NOD_Q3
+    - NOD_Q4
+    - NOD_Q5
+    - NOD_Q6
+    - NOD_Q7
+    - NOD_Q9
+    - NOD_Q9_Other
+    - Race_Option_1
+    - Race_Option_3
+    - Race_Option_4
+    - Race_Option_5
+    - Race_Option_6
+    - Race_Option_7
+    - ResponseDateTime
+    - status
+    - Trust
+    - Willing_to_Provide_Demographics
+    - LastUpdate
+  bva_survey:
+    - Survey
+    - QuestionReference
+    - FriendlyWording
+  a11_order: 
+    - Ease_Simplicity
+    - Efficiency_Speed 
+    - Quality 
+    - Employee Helpfulness
+    - Equity_Transparency 
+    - Satisfaction 
+    - Confidence_Trust
+  tot_groupby:
+    - SurveyType
+    - Year
+    - Month
+    - Total
+  tot_order:
+    - NOD
+    - Appeal
+    - Hearing
+    - Decision
+
+filenames:
+  board: >-
+      {creation_date}_Board_Flat_File_End{file_end_date}.csv
+  board_user: >-
+      {creation_date}_{fn}_End{file_end_date}.csv
+
+format:
+  date_format: "%Y-%m-%d"
+  a11_hex:
+    - "#5572fa"
+    - "#c01e5c"
+    - "#9b2fae"
+    - "#20a6ac"
+    - "#55c4f5"
+    - "#4c2c92"
+    - "#fd9727"
+
+  tot_hex:
+    - "#a249a3"
+    - "#23c8fa"
+    - "#225494"
+    - "#046eb5"
+
+lists:
+  age_breaks:
+    - 0
+    - 30
+    - 40
+    - 50
+    - 60
+    - 70
+    - 80
+    - 200
+    
+  features_bva: 
+    - Feedback_Type
+    - Feedback_Comment
+    - PeriodOfService
+    - RO
+    - Representative
+    - ResponseDateTime
+    - race
+    - Age
+    - Gender
+    - Trust
+    - SurveyType
+    - SurveyPersonID
+    
+  features_slp:
+    - Outpatient_Feedback_Type
+    - Comments
+    - ResponseDateTime
+    - Age
+    - Gender
+    - Trust
+    - VAMC
+    - VISN
+    - ServiceDate
+    - SurveyPersonID
+
+  survey_questions:
+    - SurveyPersonID
+    - Appeal_Q1
+    - Appeal_Q2
+    - Appeal_Q3
+    - Appeal_Q4
+    - Decision_Q1
+    - Decision_Q2
+    - Decision_Q3
+    - Decision_Q4
+    - Decision_Q5
+    - Decision_Q6
+    - Feedback_Comment
+    - Feedback_Type
+    - Gender
+    - Hearing_Q1
+    - Hearing_Q2
+    - Hearing_Q3
+    - Hearing_Q4
+    - Hearing_Q5
+    - Hearing_Q6
+    - Hearing_Q7
+    - Hearing_Q9
+    - Hearing_Q9_Other
+    - NOD_Appeal_Common_Explain
+    - NOD_Q1
+    - NOD_Q2
+    - NOD_Q3
+    - NOD_Q4
+    - NOD_Q5
+    - NOD_Q6
+    - NOD_Q7
+    - NOD_Q9
+    - NOD_Q9_Other
+    - Race_Option_1
+    - Race_Option_3
+    - Race_Option_4
+    - Race_Option_5
+    - Race_Option_6
+    - Race_Option_7
+    - Trust
+    - Willing_to_Provide_Demographics
+
+sizes:
+  social_media: null
+  outpatient: null
+  topics: null
+  board: null
+
+# Query Definitions
+select:
+  nrow: SELECT DISTINCT COUNT(*) FROM {table}
+  ncol: SELECT TOP 0 * FROM {table}
+  top: SELECT TOP {n} {columns} FROM {table}
+  basic: SELECT {columns} FROM {table}
+  distinct: SELECT DISTINCT {columns} FROM {table}
+  a11: >-
+      SELECT 
+        SurveyID, 
+        ResponseDateTime, 
+        Appeal_Q1, 
+        Appeal_Q2, 
+        Appeal_Q3, 
+        Appeal_Q4, 
+        Decision_Q1, 
+        Decision_Q2, 
+        Decision_Q3, 
+        Decision_Q4, 
+        Decision_Q5, 
+        Decision_Q6, 
+        Hearing_Q1, 
+        Hearing_Q2, 
+        Hearing_Q3, 
+        Hearing_Q4, 
+        Hearing_Q5, 
+        Hearing_Q6, 
+        Hearing_Q7, 
+        NOD_Q1, 
+        NOD_Q2, 
+        NOD_Q3, 
+        NOD_Q4, 
+        NOD_Q5, 
+        NOD_Q6, 
+        NOD_Q7, 
+        Trust 
+      FROM APG.SLP_BVA_Phase2_FLAT
+      
+  # Aggregate function that calculates Trust over Time (ToT) by Month
+  tot: >-
+    WITH NUMERATOR AS (SELECT SurveyType, 
+                              YEAR({date_column}) as Year, 
+                              MONTH({date_column}) as Month, 
+                              COUNT(*) AS Trust 
+                       FROM APG.SLP_BVA_Phase2_FLAT
+                       WHERE Trust > 3 
+                       GROUP BY SurveyType, 
+                                YEAR({date_column}), 
+                                MONTH({date_column}) 
+                       UNION 
+                       SELECT SurveyType, 
+                              YEAR({date_column}) as Year, 
+                              MONTH({date_column}) as Month, 
+                              0 AS Trust 
+                       FROM APG.SLP_BVA_Phase2_FLAT 
+                       WHERE Trust < 4 
+                       GROUP BY SurveyType, 
+                                YEAR({date_column}), 
+                                MONTH({date_column})), 
+         DENOMINATOR AS (SELECT SurveyType, 
+                                YEAR({date_column}) as Year, 
+                                MONTH({date_column}) as Month, 
+                                COUNT(*) AS Trust 
+                         FROM APG.SLP_BVA_Phase2_FLAT
+                         GROUP BY SurveyType, 
+                                  YEAR({date_column}), 
+                                  MONTH({date_column}))
+                                   
+    SELECT D.SurveyType, 
+           D.Year, 
+           D.Month, 
+           D.Trust as Total, 
+           N.Trust as Agree 
+    FROM NUMERATOR AS N 
+         LEFT JOIN 
+         DENOMINATOR AS D ON (N.Year = D.Year AND 
+                              N.SurveyType = D.SurveyType AND 
+                              N.Month = D.Month)
+  sample:
+    basic: >-
+      SELECT TOP {n} {columns} 
+      FROM {table} ORDER BY RAND()
+    where: >-
+      SELECT TOP {n} {columns} 
+      FROM {table} 
+      WHERE {conditions} 
+      ORDER BY RAND()
+  where:
+    top: SELECT TOP {n} {columns} FROM {table} WHERE {conditions}
+    basic: SELECT {columns} FROM {table} WHERE {conditions}
+    distinct: SELECT DISTINCT {columns} FROM {table} WHERE {conditions}
+
+# Condition Definitions for SQL query
+where:
+  like:     "{column} LIKE '%{value}%'"
+  notlike:  "{column} NOT LIKE '%{value}%'"
+  isnull:   "{column} IS NULL"
+  notnull:  "{column} IS NOT NULL"
+  isin:     "{column} IN ({values})"
+  notin:    "{column} NOT IN ({values})"
+  eq:       "{column} = {value}"
+  noteq:    "{column} <> {value}"
+  gt:       "{column} > {value}"
+  gte:      "{column} >= {value}"
+  lt:       "{column} < {value}"
+  lte:      "{column} <= {value}"
+
+tuple:
+  type1: [like, notlike, eq, noteq, gt, gte, lt, lte]
+  type2: [isin, notin]
+  type3: [isnull, notnull]
+
+# Configuration file template
+folders:
+  source: ../src
+  resources: ../resources
+  data: ../data
+
+scripts:
+  configuration_py:
+    resource: configuration.yaml
+    location: ../resources/
+  database_py:
+    resources: database.yaml
+    location: ../resources/
+
+# diagram.py Configurations
+shapes:
+  default:
+    - Circle
+    - Ellipse
+    - Line
+    - Markers
+    - Polygon
+    - Polyline
+    - Presentation
+    - Rec
+    - Transform
+
+  document: rect
+  
+  region: rect
+
+  data_source: >-
+    M {top_x} {top_x}
+    L {right_x} {right_y}
+    L {bottom_x} {bottom_y}
+    L {left_x} {left_y}
+    Z
+
+  transport: >-
+    M {x} {y}
+    H {right_x}
+    A {radius} {radius}, 0, 0, 1, {right_x} {bottom_y}
+    H {x}
+    A {radius} {radius}, 0, 0, 1, {x} {y}
+    Z
+
+  upload_mdule: >-
+    M {x} {y}
+    H {x_w}
+    V {y_h}
+    H {x}
+    Z
+
+  data_processing: >-
+    M {x_round} {y}
+    H {right_x_round}
+    Q {right_x} {y} {right_x} {right_y_round}
+    V {bottom_y_round}
+    Q {right_x} {bottom_y} {bottom_x_round}
+    H {left_x_round}
+    Q {left_x} {bottom_y} {left_x} {left_y_round}
+    V {left_x_round}
+    Q {x} {y} {x_round} {y}
+    Z
+
+  data_storage: >-
+    M {x} {y_round}
+    Q {top_x} {y} {right_x} {right_x_round}
+    V {bottom_y_round}
+    Q {bottom_x} {bottom_y} {left_x} {bottom_y}
+    Z
+
+arrows:
+  basic: >-
+    M {x} {y}
+    L {x2} {y2}
+
+  curve: >-
+    M {x} {y}
+    Q {xc1} {y} {xm} {ym}
+    Q {xc2} {yc2} {xn} {yc2}
+    L {x2} {y2}
+
+styles:
+  default:
+    fill: yellow
+    stroke: red
+    stroke_width: 5
+
+  document:
+    fill: none
+    stroke: none
+
+  region:
+    fill: blue
+    stroke: none
+
+  data_source:
+    fill: green
+    stroke: black
+    stroke_width: 5
+
+  transport:
+    fill: white
+    stroke: black
+    stroke_width: 5
+
+  upload_module:
+    fill: white
+    stroke: black
+    stroke_width: 5
+
+  data_processing:
+    fill: blue
+    stroke: black
+    stroke_width: 5
+
+  data_storage:
+    fill: white
+    stroke: black
+    stroke_width: 5
+...
