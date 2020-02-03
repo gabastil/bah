@@ -1,0 +1,27 @@
+KEY,TYPE,SCHEMA_TABLE,TABLE,LOB,COMMENTS
+1,LOB flat table,APG.SLP_BVA_Phase2_FLAT ,SLP_BVA_Phase2_FLAT,"SLP_BVA_Phase2_FLAT ,APG.SLP_BVA_Phase2_FLAT, BVA, Board of Veteran Appeals, The Board, Board",BVA 
+2,LOB flat table,APG.CP_DATA_FLAT ,CP_DATA_FLAT,"CP_DATA_FLAT ,APG.CP_DATA_FLAT, CP, Comp and Pen, Compensation and Pension",Comp and Pen 
+3,LOB flat table,APG.SLP_EDU_FLAT ,SLP_EDU_FLAT,"SLP_EDU_FLAT ,APG.SLP_EDU_FLAT, EDU, ED, Education, GI Bill",EDU 
+4,LOB flat table,APG.NCA_CC_DATA_FLAT ,NCA_CC_DATA_FLAT,"NCA_CC_DATA_FLAT ,APG.NCA_CC_DATA_FLAT, NCA, National Cemeteries, National Cemetery Administration, NCA CC",NCA 
+5,LOB flat table,APG.NCA_POST_CALL_FLAT ,NCA_POST_CALL_FLAT,"NCA_POST_CALL_FLAT ,APG.NCA_POST_CALL_FLAT, NCA_POST, POST, Post Call",NCA Post Call
+6,LOB flat table,APG.SLP_DATA_FT_ALL ,SLP_DATA_FT_ALL,"SLP_DATA_FT_ALL ,APG.SLP_DATA_FT_ALL, SLP, Outpatient",Outpatient 
+7,LOB flat table,APG.VEO_Medallia_TA_Flat_New,VEO_Medallia_TA_Flat_New,"VEO_Medallia_TA_Flat_New,APG.VEO_Medallia_TA_Flat_New, TA, Text Analytics, Medallia",Outpatient Text Analytics from Medallia
+8,LOB flat table,APG.TELEPROV_DATA_FLAT ,TELEPROV_DATA_FLAT,"TELEPROV_DATA_FLAT ,APG.TELEPROV_DATA_FLAT, TELE, TP, Teleprovider, Tele Provider",Tele Provider
+9,LOB flat table,APG.SLP_TLH_DATA_ALL ,SLP_TLH_DATA_ALL,"SLP_TLH_DATA_ALL ,APG.SLP_TLH_DATA_ALL, TLH, Telehealth, Tele Health, TH",Telehealth 
+10,LOB flat table,APG.VBA_CC_FLAT ,VBA_CC_FLAT,"VBA_CC_FLAT ,APG.VBA_CC_FLAT, VBA, VBA CC",VBA CC 
+11,LOB flat table,APG.WHHL_FLAT_ALL ,WHHL_FLAT_ALL,"WHHL_FLAT_ALL ,APG.WHHL_FLAT_ALL, WHHL, White House Hotline",WHHL 
+12,VEODB core,APG.VEOAnalytics_risk_index,VEOAnalytics_risk_index,"VEOAnalytics_risk_index,APG.VEOAnalytics_risk_index",Risk index data
+13,VEODB core,APG.VEOAnalyticsFeature,VEOAnalyticsFeature,"VEOAnalyticsFeature,APG.VEOAnalyticsFeature",Text analytics data (VEO version)
+14,VEODB core,APG.VEOAnalyticsFeatureDefinition,VEOAnalyticsFeatureDefinition,"VEOAnalyticsFeatureDefinition,APG.VEOAnalyticsFeatureDefinition",Text analytics feature definitions
+15,VEODB core,APG.VEOOptOut,VEOOptOut,"VEOOptOut,APG.VEOOptOut",Opt-out data
+16,VEODB core,APG.VEOPerson,VEOPerson,"VEOPerson,APG.VEOPerson",Basic data for persons involved in VEO surveys
+17,VEODB core,APG.VEOPersonDemographic,VEOPersonDemographic,"VEOPersonDemographic,APG.VEOPersonDemographic",Basic demographic attributes of persons involved in VEO surveys
+18,VEODB core,APG.VEOPersonSurvey,VEOPersonSurvey,"VEOPersonSurvey,APG.VEOPersonSurvey",Data link a person to an VEO survey invite
+19,VEODB core,APG.VEOSampleAttribute,VEOSampleAttribute,"VEOSampleAttribute,APG.VEOSampleAttribute",Administrative attribute of survey samples
+20,VEODB core,APG.VEOSurvey,VEOSurvey,"VEOSurvey,APG.VEOSurvey",Data about VEO survey
+21,VEODB core,APG.VEOSurvey_Plan,VEOSurvey_Plan,"VEOSurvey_Plan,APG.VEOSurvey_Plan",Data about VEO survey plan
+22,VEODB core,APG.VEOSurveyComments,VEOSurveyComments,"VEOSurveyComments,APG.VEOSurveyComments",Has free text comments from survey
+23,VEODB core,APG.VEOSurveyContext,VEOSurveyContext,"VEOSurveyContext,APG.VEOSurveyContext",Administrative data for the context of invitation
+24,VEODB core,APG.VEOSurveyQuestion,VEOSurveyQuestion,"VEOSurveyQuestion,APG.VEOSurveyQuestion,vsq,qs",Survey questions
+25,Medallia,APG.VEO_Medallia_TA_Topic_Flat,VEO_Medallia_TA_Topic_Flat,"VEO_Medallia_TA_Topic_Flat, VEO_Topics, Topics, Medallia_Topics",VSignals (Medallia) topic listings.
+26,Medallia,APG.VEO_Medallia_TA_Topic_Flat_standard ,VEO_Medallia_TA_Topic_Flat_standard ,"VEO_Medallia_TA_Topic_Flat_standard, VEO_Topics_standard, VEO_Topics_std, Topics_standard, Topics_std, Medallia_Topics_standard, Medallia_Topics_std",Immutable topic listings.

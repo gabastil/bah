@@ -1,0 +1,102 @@
+---
+# DataFrame Definitions
+# Glenn Abastillas
+# November 25, 2019
+# 
+# This configuration file contains the definitions of data used in the creation
+# of the Board Report. This information is used by the `query` method in the
+# database package. There are two types of DataFrame definitions: the (1) Base
+# type and the (2) Subset type.
+#
+# Base Type: This data is retrieved from a SQL query to a database, which
+# results in a DataFrame. This can be used alone or subset.
+#       Format:
+#           name:   # Name of DataFrame
+#           query:  # Reference to the query in configuration.yml
+#
+# Subset Type: This data is derived from Base data pulled from a SQL database.
+#       Format:
+#           name:           # Name of DataFrame
+#           parent:         # Name of Base DataFrame to subset
+#           conditions:     # Conditions to subset Base data as a tuple
+#
+
+base:
+  - data:
+      name: d120
+      query: d120
+      desc: >-
+            This Base DataFrame contains data from a four month period. 
+            Other data are subset from this data.
+  - data:
+      name: a11
+      query: a11
+      desc: >-
+            This Base DataFrame contains data required for an A-11 CX Domain 
+            calculation.
+  - data:
+      name: tot
+      query: tot
+      desc: >-
+            This Base DataFrame contains data required to plot a Trust over 
+            Time line graph.
+
+subset:
+  - data:
+      name: d90
+      parent: d120
+      conditions:
+        - ResponseDateTime
+        - days: 90
+  - data:
+      name: dn
+      parent: d120
+      conditions:
+        - ResponseDateTime
+        - days: null
+  - data:
+      name: dp
+      parent: d120
+      conditions:
+        - ResponseDateTime
+        - days: null
+  - data:
+      name: cn
+      parent: d120
+      conditions:
+        - creationdate
+        - days: null
+  - data:
+      name: cp
+      parent: d120
+      conditions:
+        - creationdate
+        - days: null
+  - data:
+      name: aug
+      parent: dn
+      conditions: null
+  - data:
+      name: mp1
+      parent: d120
+      conditions:
+        - ResponseDateTime
+        - months: 0
+  - data:
+      name: mp2
+      parent: d120
+      conditions:
+        - ResponseDateTime
+        - months: 1
+  - data:
+      name: mp3
+      parent: d120
+      conditions:
+        - ResponseDateTime
+        - months: 2
+  - data:
+      name: mp4
+      parent: d120
+      conditions:
+        - ResponseDateTime
+        - months: 3

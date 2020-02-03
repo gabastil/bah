@@ -1,0 +1,603 @@
+---
+
+# CONFIGURATION SETTINGS FOR PATH FINDING
+# - - - - - - - - - - - - - - - - - - - -
+# Default directories for paths prefixed with tilde are the user's Documents.
+# Default directory for paths prefixed with dot-slash is the script's path.
+paths:
+    # Parent folders
+    board: ~/Documents/board
+    template: ~/Documents/board/template
+    data: ~/Documents/board/data
+    output: ~/Documents/board/docx
+    resources: ~/Documents/board/resources
+    images: ~/Documents/board/images
+
+    # Output directories by time period
+    week: ~/Documents/board/docx/week
+    midmonth: ~/Documents/board/docx/midmonth
+    month: ~/Documents/board/docx/month
+
+    # Template paths
+    document: ~/Documents/board/template/template.docx
+    variables: ~/Documents/board/template/variables.xlsx
+    # databases: ~/Documents/board/data/databases.csv
+
+    # Normalization resources
+    wars: ~/Documents/board/resources/wars.pkl
+    reps: ~/Documents/board/resources/reps.pkl
+    topics: ~/Documents/board/resources/topics.csv
+    a11: ~/Documents/board/resources/a11.csv
+
+    # Graphics
+    a11_image: ~/Documents/board/images/a11.png
+    tot_image: ~/Documents/board/images/tot.png
+    
+    relative:
+        board: ./board
+        data: ./data
+        images: ./images
+        output: ./docx
+        resources: ./resources
+        source: ./src
+        template: ./template
+
+lists:
+    board_surveys:
+      - AMA
+      - [NOD, Legacy]
+      - Hearing
+      - Decision
+
+    non_response:
+      - declined to answer
+      - will not provide
+      - none
+      
+    agree_scores:
+      - 4
+      - 5
+      
+    disagree_scores:
+      - 1
+      - 2
+      
+    a11_columns:
+      - QuestionReference
+      - A11CXDomain
+      
+    bva_survey_question:
+      - >-
+          &ldquo;{question}&rdquo; (Board - {survey}, {score}%
+          &ldquo;Disagree&rdquo; or &ldquo;Strongly Disagree&rdquo;)
+
+    age_breaks:
+      - 0
+      - 30
+      - 40
+      - 50
+      - 60
+      - 70
+      - 80
+      - 200
+
+    features_bva:
+      - Feedback_Type
+      - Feedback_Comment
+      - PeriodOfService
+      - RO
+      - Representative
+      - ResponseDateTime
+      - race
+      - Age
+      - Gender
+      - Trust
+      - SurveyType
+      - SurveyPersonID
+
+    features_slp:
+      - Outpatient_Feedback_Type
+      - Comments
+      - ResponseDateTime
+      - Age
+      - Gender
+      - Trust
+      - VAMC
+      - VISN
+      - ServiceDate
+      - SurveyPersonID
+
+    survey_questions:
+      - SurveyPersonID
+      - Appeal_Q1
+      - Appeal_Q2
+      - Appeal_Q3
+      - Appeal_Q4
+      - Decision_Q1
+      - Decision_Q2
+      - Decision_Q3
+      - Decision_Q4
+      - Decision_Q5
+      - Decision_Q6
+      - Feedback_Comment
+      - Feedback_Type
+      - Gender
+      - Hearing_Q1
+      - Hearing_Q2
+      - Hearing_Q3
+      - Hearing_Q4
+      - Hearing_Q5
+      - Hearing_Q6
+      - Hearing_Q7
+      - Hearing_Q9
+      - Hearing_Q9_Other
+      - NOD_Appeal_Common_Explain
+      - NOD_Q1
+      - NOD_Q2
+      - NOD_Q3
+      - NOD_Q4
+      - NOD_Q5
+      - NOD_Q6
+      - NOD_Q7
+      - NOD_Q9
+      - NOD_Q9_Other
+      - Race_Option_1
+      - Race_Option_3
+      - Race_Option_4
+      - Race_Option_5
+      - Race_Option_6
+      - Race_Option_7
+      - Trust
+      - Willing_to_Provide_Demographics
+
+    ccr_columns:
+      - Feedback_Comment
+      - Feedback_Type
+      - RO
+      - ResponseDateTime
+
+    ccr_features:
+      - FeatureReference
+      - Contents
+
+    ccr_features_prettify:
+      - FeatureReference
+      - Reference4Presentation
+
+params: >-
+    DRIVER={SQL Server};
+    SERVER=vhacdwa01.vha.med.va.gov;
+    DATABASE=VE_APG;
+    TRUSTED_CONNECTION=Yes
+
+tables:
+  social_media: APG.VEO_Social_Media
+  outpatient: APG.SLP_DATA_FT_ALL
+  topics: VEO_Medallia_TA_Topic_Flat
+  board: APG.SLP_BVA_Phase2_FLAT
+  topics: APG.VEO_Medallia_TA_Topic_Flat
+  topics_std: APG.VEO_Medallia_TA_Topic_Flat_standard
+  topics_ord: APG.VEO_TA_Topic_Org
+  ta_all: APG.VEO_Medallia_TA_All
+
+columns:
+  social_media: null
+  outpatient: null
+  topics: null
+  board:
+    - SurveyID
+    - SurveyPersonID
+    - VeteranFirstName
+    - VeteranLastName
+    - AppellantFirstName
+    - AppellantLastName
+    - DOB
+    - Cert_Date
+    - Form_9_Date
+    - Disposition
+    - RO
+    - HomePhone
+    - SSOCs
+    - HearingType
+    - WorkPhone
+    - HearingDate
+    - DecisionDate
+    - TriggerDate
+    - ProgramType
+    - VLJ
+    - AppealID
+    - HomePhoneAreaCode
+    - WorkPhoneAreaCode
+    - Docket
+    - DocketedDate
+    - NOD_RAMP_AMA_only
+    - RepresentativeName
+    - Representative
+    - PeriodOfService
+    - SurveyType
+    - MVI
+    - Age
+    - Gender
+    - race
+    - Email
+    - DisabilityPercentage
+    - State
+    - Appeal_Q1
+    - Appeal_Q2
+    - Appeal_Q3
+    - Appeal_Q4
+    - creationdate
+    - Decision_Q1
+    - Decision_Q2
+    - Decision_Q3
+    - Decision_Q4
+    - Decision_Q5
+    - Decision_Q6
+    - Feedback_Comment
+    - Feedback_Type
+    - Gender_SelfID
+    - Hearing_Q1
+    - Hearing_Q2
+    - Hearing_Q3
+    - Hearing_Q4
+    - Hearing_Q5
+    - Hearing_Q6
+    - Hearing_Q7
+    - Hearing_Q9
+    - Hearing_Q9_Other
+    - NOD_Appeal_Common_Explain
+    - NOD_Q1
+    - NOD_Q2
+    - NOD_Q3
+    - NOD_Q4
+    - NOD_Q5
+    - NOD_Q6
+    - NOD_Q7
+    - NOD_Q9
+    - NOD_Q9_Other
+    - Race_Option_1
+    - Race_Option_3
+    - Race_Option_4
+    - Race_Option_5
+    - Race_Option_6
+    - Race_Option_7
+    - ResponseDateTime
+    - status
+    - Trust
+    - Willing_to_Provide_Demographics
+    - LastUpdate
+  bva_survey:
+    - Survey
+    - QuestionReference
+    - FriendlyWording
+  a11_order:
+    - Ease_Simplicity
+    - Efficiency_Speed
+    - Quality
+    - Employee Helpfulness
+    - Equity_Transparency
+    - Satisfaction
+    - Confidence_Trust
+  tot_groupby:
+    - SurveyType
+    - Year
+    - Month
+    - Total
+  tot_order:
+    - NOD
+    - Appeal
+    - Hearing
+    - Decision
+
+filenames:
+  board: >-
+      {fn}_{delta}ly_{date}.docx
+  board_data: >-
+      {creation_date}_Board_Flat_File_End{file_end_date}.pkl
+  board_user: >-
+      {creation_date}_{fn}_End{file_end_date}.pkl
+
+bluf:
+  # Base text used to generate the BLUF for the first page of the Board report
+  autobluf: Compared to {before}, {A}. Within {current}, {B}.
+  
+  # AMA text contingent on comparison of current and previous periods
+  ama:
+    no_responses: there continue to be no responses for the AMA survey
+    higher_trust: AMA survey responses from {current} show higher Trust
+    lower_trust: AMA survey responses from {current} show lower Trust
+    no_change: AMA survey responses show no change in Trust
+    
+  # AMA and Legacy comparison text
+  ama_leg:
+    no_responses: >-
+      there were insufficient responses to provide 
+      a comparison between the surveys.
+      
+    higher_trust_no_ama: >-
+      Legacy survey responses show higher Trust 
+      than the AMA survey, which had no responses
+    
+    higher_trust_no_leg: >-
+      AMA survey responses show higher Trust
+      than the Legacy survey, which had no responses
+    
+    higher_trust_ama: the AMA survey shows higher Trust than the Legacy survey
+    higher_trust_leg: the Legacy survey shows higher Trust than the AMA survey
+    same_trust: both Legacy and AMA surveys show the same level of Trust  
+
+  # Comparison text for BLUFs in the body of the report by demographic
+  hilo:
+    higher: showed higher
+    lower: showed lower
+    insufficient_data: were insufficient to calculate 
+
+format:
+  iso: "%Y-%m-%d %H:%M:%S"
+  
+  # Removed [sic] from template
+  feedback: >-
+      "{Feedback_Comment}" ({RO} Regional Office, {ResponseDateTime})
+  
+  # A-11 bar colors
+  a11_hex:
+    - "#5572fa"
+    - "#c01e5c"
+    - "#9b2fae"
+    - "#20a6ac"
+    - "#55c4f5"
+    - "#4c2c92"
+    - "#fd9727"
+
+  # Survey colors
+  tot_hex:
+    - "#a249a3"
+    - "#046eb5"
+    - "#23c8fa"
+    - "#225494"
+
+  # Red to Green fill
+  tot_table:
+    - "#ffdbce"
+    - "#fff2cc"
+    - "#f2ffcc"
+    - "#ccffdd"
+    - "#99ffbb"
+
+  tot_definitions:
+    lineplot:
+      # Format: SurveyType and Hex Color for Chart
+      - [Appeal, "#23c8fa"]
+      - [Hearing, "#046eb5"]
+      - [Decision, "#225494"]
+      - [NOD, "#a249a3"]
+
+sizes:
+  social_media: null
+  outpatient: null
+  topics: null
+  board: null
+
+# Query Definitions
+select:
+  nrow: SELECT DISTINCT COUNT(*) FROM {table}
+  ncol: SELECT TOP 0 * FROM {table}
+  top: SELECT TOP {n} {columns} FROM {table}
+  basic: SELECT {columns} FROM {table}
+  distinct: SELECT DISTINCT {columns} FROM {table}
+  d120: >-
+      SELECT DISTINCT {columns}
+      FROM {table}
+      WHERE {date_column} < {end}
+      AND {date_column} >= {start}
+  a11: >-
+      SELECT
+        SurveyID,
+        ResponseDateTime,
+        Appeal_Q1,
+        Appeal_Q2,
+        Appeal_Q3,
+        Appeal_Q4,
+        Decision_Q1,
+        Decision_Q2,
+        Decision_Q3,
+        Decision_Q4,
+        Decision_Q5,
+        Decision_Q6,
+        Hearing_Q1,
+        Hearing_Q2,
+        Hearing_Q3,
+        Hearing_Q4,
+        Hearing_Q5,
+        Hearing_Q6,
+        Hearing_Q7,
+        NOD_Q1,
+        NOD_Q2,
+        NOD_Q3,
+        NOD_Q4,
+        NOD_Q5,
+        NOD_Q6,
+        NOD_Q7,
+        Trust
+      FROM APG.SLP_BVA_Phase2_FLAT
+
+  # Aggregate function that calculates Trust over Time (ToT) by Month
+  tot: >-
+    WITH NUMERATOR AS (SELECT SurveyType,
+                              YEAR({date_column}) as Year,
+                              MONTH({date_column}) as Month,
+                              COUNT(*) AS Trust
+                       FROM APG.SLP_BVA_Phase2_FLAT
+                       WHERE Trust > 3
+                       GROUP BY SurveyType,
+                                YEAR({date_column}),
+                                MONTH({date_column})
+                       UNION
+                       SELECT SurveyType,
+                              YEAR({date_column}) as Year,
+                              MONTH({date_column}) as Month,
+                              0 AS Trust
+                       FROM APG.SLP_BVA_Phase2_FLAT
+                       WHERE Trust < 4
+                       GROUP BY SurveyType,
+                                YEAR({date_column}),
+                                MONTH({date_column})),
+         DENOMINATOR AS (SELECT SurveyType,
+                                YEAR({date_column}) as Year,
+                                MONTH({date_column}) as Month,
+                                COUNT(*) AS Trust
+                         FROM APG.SLP_BVA_Phase2_FLAT
+                         GROUP BY SurveyType,
+                                  YEAR({date_column}),
+                                  MONTH({date_column}))
+
+    SELECT D.SurveyType,
+           D.Year,
+           D.Month,
+           D.Trust as Total,
+           N.Trust as Agree
+    FROM NUMERATOR AS N
+         LEFT JOIN
+         DENOMINATOR AS D ON (N.Year = D.Year AND
+                              N.SurveyType = D.SurveyType AND
+                              N.Month = D.Month)
+  sample:
+    basic: >-
+      SELECT TOP {n} {columns}
+      FROM {table} ORDER BY RAND()
+    where: >-
+      SELECT TOP {n} {columns}
+      FROM {table}
+      WHERE {conditions}
+      ORDER BY RAND()
+  where:
+    top: SELECT TOP {n} {columns} FROM {table} WHERE {conditions}
+    basic: SELECT {columns} FROM {table} WHERE {conditions}
+    distinct: SELECT DISTINCT {columns} FROM {table} WHERE {conditions}
+
+# Condition Definitions for SQL query
+where:
+  like:     "{column} LIKE '%{value}%'"
+  notlike:  "{column} NOT LIKE '%{value}%'"
+  isnull:   "{column} IS NULL"
+  notnull:  "{column} IS NOT NULL"
+  isin:     "{column} IN ({values})"
+  notin:    "{column} NOT IN ({values})"
+  eq:       "{column} = {value}"
+  noteq:    "{column} <> {value}"
+  gt:       "{column} > {value}"
+  gte:      "{column} >= {value}"
+  lt:       "{column} < {value}"
+  lte:      "{column} <= {value}"
+
+tuple:
+  type1: [like, notlike, eq, noteq, gt, gte, lt, lte]
+  type2: [isin, notin]
+  type3: [isnull, notnull]
+
+
+scripts:
+  configuration_py:
+    resource: configuration.yaml
+    location: ./resources/
+  database_py:
+    resources: database.yaml
+    location: ./resources/
+
+urls:
+    vsignals: "https://va.voice.va.gov/sso/va"
+    
+script:
+  calculate:
+    build_table:
+      error: >-
+        There is no data from which a table could be created.
+        Try expanding query date parameters to include more responses or choose
+        a different time period (e.g., -t month, -t week)
+        
+  report:
+    build:
+      infostring: >-
+      
+        {fp_label}: {fp}
+        
+        {fn_label}: {fn}
+        
+        
+        Query for time period {delta} ending on {end} 
+        produced the following datasets:
+        
+        {d90}: {d90_shape}
+        
+        {dn}: {dn_shape}
+        
+        {dp}: {dp_shape}
+        
+        
+        {message} {run_time}
+        
+    main:
+      error: No report generated. Set period to week, midmonth or month
+      
+      infostring: >-
+        
+        -------------------- Board Script --------------------
+        
+        {} ending {}.
+        
+        Calculating A11 by {}.
+        
+        Query results will be {}.
+        
+        
+        Using directories in: {}        
+        
+        
+        Building {}ly Board report (pull -> partition -> analyze):
+        
+      optparse:
+        flags:
+          - [-t, --time]
+          - [-e, --end-date]
+          - [-s, --save]
+          - [-x, --use-existing]
+          - [-f, --filename]
+          - [-a, --a11]
+          
+        help:
+          time: Specify `week`, `midmonth`, or `month`
+          date: Specify last date of period
+          file: Use the latest existing data pulled
+          save: Name of file to save. This implicitly turns on -s flag
+          a11: Indicate A-11 Calculate; by Question (Q) or by Response (R)
+        
+          
+  writer:
+    get_date_func:
+      patterns:
+        - (w[e]{0,2}k(?!s)|7)
+        - ((2|two)? ?w[e]{0,2}ks|14)
+        - mid.?(mo(nth)?|30)
+        - (mo(nth)?|30)
+    build_tables:
+      columns:
+        - [Age Group, null]
+        - [Gender, null]
+        - [Race, 10]
+        - [Period of Service, 10]
+        - [Representative, 10]
+      periods: [d90, mp0, mp1, mp2, mp3]
+    distill:
+      pattern: \$[A-Z0-9]+
+    infuse:
+      figure_1: Figure 1. A-11 CX Drivers
+      figure_2: Figure 2. Trust Scores by Survey Type from launch in October 2018 to present
+    query:
+       error: No rows pulled. Unable to analyze. Check query.
+
+#resources:
+#    connection_params: >-
+#      DRIVER={SQL Server};
+#      SERVER=vhacdwa01.vha.med.va.gov;
+#      DATABASE=VE_APG;TRUSTED_CONNECTION=Yes
+...

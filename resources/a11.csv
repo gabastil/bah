@@ -1,0 +1,26 @@
+﻿Survey,QuestionReference,A11CXDomain,OriginalWording,FriendlyWording
+Appeal,Appeal_Q1,Ease_Simplicity,I clearly understood how to file an appeal to the Board of Veterans' Appeals.,I clearly understood how to file an appeal to the Board of Veterans' Appeals.
+Appeal,Appeal_Q2,Efficiency_Speed,I received a response to filing my appeal from the Board of Veterans’ Appeals in a timely fashion.,I received a response to filing my appeal from the Board of Veterans’ Appeals in a timely fashion.
+Appeal,Appeal_Q3,Ease_Simplicity,The notification letter from the Board of Veterans’ Appeals explained things in a way that was easy for me to understand.,The notification letter from the Board of Veterans’ Appeals explained things in a way that was easy for me to understand.
+Appeal,Appeal_Q4,Satisfaction,I am satisfied with the service I received from the Board of Veterans' Appeals. Required (AMA and Legacy),I am satisfied with the service I received from the Board of Veterans' Appeals.
+Decision,Decision_Q1,Efficiency_Speed,I received my Board of Veterans’ Appeals’ decision in a timely manner.,I received my Board of Veterans’ Appeals’ decision in a timely manner.
+Decision,Decision_Q2,Ease_Simplicity,It was easy for me to understand the Board of Veterans' Appeals' decision. Required,It was easy for me to understand the Board of Veterans' Appeals' decision.
+Decision,Decision_Q3,Quality,I understood why the Board of Veterans’ Appeals’ decision was made.,I understood why the Board of Veterans’ Appeals’ decision was made.
+Decision,Decision_Q4,Equity_Transparency,I felt the evidence submitted in my appeal was fairly evaluated. Required,I felt the evidence submitted in my appeal was fairly evaluated.
+Decision,Decision_Q5,Quality,"The information in the Board of Veterans’ Appeals’ decision entitled, ""Your Rights to Appeal Our Decision"" clearly explained my options.","The information in the Board of Veterans’ Appeals’ decision entitled, ""Your Rights to Appeal Our Decision"" clearly explained my options."
+Decision,Decision_Q6,Satisfaction,I am satisfied with the service I received from the Board of Veterans' Appeals. Required,I am satisfied with the service I received from the Board of Veterans' Appeals.
+Hearing,Hearing_Q1,Equity_Transparency,"I understood what I needed to do to prepare for my hearing (for example: gathering evidence, requesting legal aid, etc.).",I understood what I needed to do to prepare for my hearing.
+Hearing,Hearing_Q2,Equity_Transparency,I knew what to expect on the day of the hearing.,I knew what to expect on the day of the hearing.
+Hearing,Hearing_Q3,Efficiency_Speed,I received a hearing date in a timely fashion.,I received a hearing date in a timely fashion.
+Hearing,Hearing_Q4,Employee Helpfulness,The Veterans Law Judge (VLJ) who held the hearing listened to me. Required ,The Veterans Law Judge (VLJ) who held the hearing listened to me.
+Hearing,Hearing_Q5,Employee Helpfulness,The Veterans Law Judge (VLJ) explained things to me in a way that was easy to understand. Required,The Veterans Law Judge (VLJ) explained things to me in a way that was easy to understand.
+Hearing,Hearing_Q6,Quality,"If necessary, it was clear to me how to submit new evidence following my hearing.","If necessary, it was clear to me how to submit new evidence following my hearing."
+Hearing,Hearing_Q7,Satisfaction,I am satisfied with the service I received from the Board of Veterans' Appeals. Required,I am satisfied with the service I received from the Board of Veterans' Appeals.
+NOD,NOD_Q1,Ease_Simplicity,The language describing each of the three Board of Veterans’ Appeals’ review options was easy to understand on the Notice of Disagreement (NOD) form.,The language describing each of the three Board of Veterans’ Appeals’ review options was easy to understand on the Notice of Disagreement (NOD) form.
+NOD,NOD_Q2,Ease_Simplicity,I clearly understood the difference between the three Board of Veterans’ Appeals’ review options.,I clearly understood the difference between the three Board of Veterans’ Appeals’ review options.
+NOD,NOD_Q3,Confidence_Trust,I felt confident that I selected the best review option. Required,I felt confident that I selected the best review option.
+NOD,NOD_Q4,Ease_Simplicity,I clearly understood how to file my Notice of Disagreement (NOD). Required (AMA),I clearly understood how to file my Notice of Disagreement (NOD).
+NOD,NOD_Q5,Efficiency_Speed,I received the response to my Notice of Disagreement (NOD) in a timely fashion. Required (AMA) ,I received the response to my Notice of Disagreement (NOD) in a timely fashion.
+NOD,NOD_Q6,Ease_Simplicity,The Notice of Disagreement (NOD) notification letter explained things in a way that was easy for me to understand. Required,The Notice of Disagreement (NOD) notification letter explained things in a way that was easy for me to understand.
+NOD,NOD_Q7,Satisfaction,I am satisfied with the service I received from the Board of Veterans' Appeals. Required,I am satisfied with the service I received from the Board of Veterans' Appeals.
+Trust,Trust,Confidence_Trust,I trust the Board of Veterans' Appeals to fulfill our country's commitment to Veterans and their families. Required (AMA and Legacy),I trust the Board of Veterans' Appeals to fulfill our country's commitment to Veterans and their families.
