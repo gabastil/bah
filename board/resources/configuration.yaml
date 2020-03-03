@@ -1,7 +1,29 @@
+# configuration.yaml Configuration file.
+# Author: Glenn Abastillas
+# Created: October 1, 2019
+#
+# This configuration file contains data used by all scripts in the Board
+# report package. Script-relevant data can be found under `script.*name*`. Some
+# script-relevant data---queries---have been pulled into their own sections for
+# easy of access.
+#
+# Sections
+# --------
+# Section 1: Paths ---- Filepaths and script resources
+# Section 2: Lists ---- List data (e.g., columns, Likert scores) for easy access
+# Section 3: Tables --- Database table names for reference and easy access
+# Section 4: Columns -- DataFrame or Table column names for easy access
+# Section 5: Selects -- SQL-related query templates 
+# Section 6: Wheres --- SQL-related query condition statement templates
+# Section 7: Filenames- Filename shells for output data (e.g., query results)
+# Section 8: Formats -- Miscellaneous format definitions and templates
+# Section 9: Sizes ---- null
+# Section 10: URLS ---- URL addresses for API calls
+# Section 11: Scripts - Script-specific settings
 ---
 
-# CONFIGURATION SETTINGS FOR PATH FINDING
-# - - - - - - - - - - - - - - - - - - - -
+# (1) PATHS: FILEPATHS AND SCRIPT RESOURCES
+# - - - - - - - - - - - - - - - - - - - - -
 # Default directories for paths prefixed with tilde are the user's Documents.
 # Default directory for paths prefixed with dot-slash is the script's path.
 paths:
@@ -42,6 +64,11 @@ paths:
         source: ./src
         template: ./template
 
+# (2) LISTS - LIST DATA (E.G., COLUMNS, LIKERT SCORES) FOR EASY ACCESS
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Results for scripts that use elements in a list for processes. For example,
+# this includes lists of data values for a category like Board surveys, age
+# category designations, and Likert scores.
 lists:
     board_surveys:
       - AMA
@@ -164,12 +191,9 @@ lists:
       - FeatureReference
       - Reference4Presentation
 
-params: >-
-    DRIVER={SQL Server};
-    SERVER=vhacdwa01.vha.med.va.gov;
-    DATABASE=VE_APG;
-    TRUSTED_CONNECTION=Yes
-
+# (3) TABLES - DATABASE TABLE NAMES FOR REFERENCE AND EASY ACCESS
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# VEO DB table list for queries.
 tables:
   social_media: APG.VEO_Social_Media
   outpatient: APG.SLP_DATA_FT_ALL
@@ -180,6 +204,9 @@ tables:
   topics_ord: APG.VEO_TA_Topic_Org
   ta_all: APG.VEO_Medallia_TA_All
 
+# (4) COLUMNS - DATAFRAME OR TABLE COLUMN NAMES FOR EASY ACCESS
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Columns of tables pulled from VEO DB.
 columns:
   social_media: null
   outpatient: null
@@ -288,97 +315,10 @@ columns:
     - Appeal
     - Hearing
     - Decision
-
-filenames:
-  board: >-
-      {fn}_{delta}ly_{date}.docx
-  board_data: >-
-      {creation_date}_Board_Flat_File_End{file_end_date}.pkl
-  board_user: >-
-      {creation_date}_{fn}_End{file_end_date}.pkl
-
-bluf:
-  # Base text used to generate the BLUF for the first page of the Board report
-  autobluf: Compared to {before}, {A}. Within {current}, {B}.
-  
-  # AMA text contingent on comparison of current and previous periods
-  ama:
-    no_responses: there continue to be no responses for the AMA survey
-    higher_trust: AMA survey responses from {current} show higher Trust
-    lower_trust: AMA survey responses from {current} show lower Trust
-    no_change: AMA survey responses show no change in Trust
     
-  # AMA and Legacy comparison text
-  ama_leg:
-    no_responses: >-
-      there were insufficient responses to provide 
-      a comparison between the surveys.
-      
-    higher_trust_no_ama: >-
-      Legacy survey responses show higher Trust 
-      than the AMA survey, which had no responses
-    
-    higher_trust_no_leg: >-
-      AMA survey responses show higher Trust
-      than the Legacy survey, which had no responses
-    
-    higher_trust_ama: the AMA survey shows higher Trust than the Legacy survey
-    higher_trust_leg: the Legacy survey shows higher Trust than the AMA survey
-    same_trust: both Legacy and AMA surveys show the same level of Trust  
-
-  # Comparison text for BLUFs in the body of the report by demographic
-  hilo:
-    higher: showed higher
-    lower: showed lower
-    insufficient_data: were insufficient to calculate 
-
-format:
-  iso: "%Y-%m-%d %H:%M:%S"
-  
-  # Removed [sic] from template
-  feedback: >-
-      "{Feedback_Comment}" ({RO} Regional Office, {ResponseDateTime})
-  
-  # A-11 bar colors
-  a11_hex:
-    - "#5572fa"
-    - "#c01e5c"
-    - "#9b2fae"
-    - "#20a6ac"
-    - "#55c4f5"
-    - "#4c2c92"
-    - "#fd9727"
-
-  # Survey colors
-  tot_hex:
-    - "#a249a3"
-    - "#046eb5"
-    - "#23c8fa"
-    - "#225494"
-
-  # Red to Green fill
-  tot_table:
-    - "#ffdbce"
-    - "#fff2cc"
-    - "#f2ffcc"
-    - "#ccffdd"
-    - "#99ffbb"
-
-  tot_definitions:
-    lineplot:
-      # Format: SurveyType and Hex Color for Chart
-      - [Appeal, "#23c8fa"]
-      - [Hearing, "#046eb5"]
-      - [Decision, "#225494"]
-      - [NOD, "#a249a3"]
-
-sizes:
-  social_media: null
-  outpatient: null
-  topics: null
-  board: null
-
-# Query Definitions
+# (5) SELECTS - SQL-RELATED QUERY TEMPLATES 
+# - - - - - - - - - - - - - - - - - - - - -
+# Query definitions with placeholder variables. Use str.format to pass values.
 select:
   nrow: SELECT DISTINCT COUNT(*) FROM {table}
   ncol: SELECT TOP 0 * FROM {table}
@@ -475,7 +415,9 @@ select:
     basic: SELECT {columns} FROM {table} WHERE {conditions}
     distinct: SELECT DISTINCT {columns} FROM {table} WHERE {conditions}
 
-# Condition Definitions for SQL query
+# (6) WHERES - SQL-RELATED QUERY CONDITION STATEMENT TEMPLATES
+# - - - - - - - - - - - - - - - - - - - - -
+# Conditional statement templates for use with query builder methods.
 where:
   like:     "{column} LIKE '%{value}%'"
   notlike:  "{column} NOT LIKE '%{value}%'"
@@ -490,23 +432,51 @@ where:
   lt:       "{column} < {value}"
   lte:      "{column} <= {value}"
 
-tuple:
-  type1: [like, notlike, eq, noteq, gt, gte, lt, lte]
-  type2: [isin, notin]
-  type3: [isnull, notnull]
+# (7) FILENAMES- FILENAME SHELLS FOR OUTPUT DATA (E.G., QUERY RESULTS)
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Filename templates for output like query results and the Board script.
+filenames:
+  board: >-
+      {fn}_{delta}ly_{date}.docx
+  board_data: >-
+      {creation_date}_Board_Flat_File_End{file_end_date}.pkl
+  board_user: >-
+      {creation_date}_{fn}_End{file_end_date}.pkl
 
 
-scripts:
-  configuration_py:
-    resource: configuration.yaml
-    location: ./resources/
-  database_py:
-    resources: database.yaml
-    location: ./resources/
+# (8) FORMATS - MISCELLANEOUS FORMAT DEFINITIONS AND TEMPLATES
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Miscellanous format definitions used across all scripts.
+format:
+  iso: "%Y-%m-%d %H:%M:%S"
+  
 
+# (9) SIZES - NULL
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+sizes:
+  social_media: null
+  outpatient: null
+  topics: null
+  board: null
+
+#scripts:
+#  configuration_py:
+#    resource: configuration.yaml
+#    location: ./resources/
+#  database_py:
+#    resources: database.yaml
+#    location: ./resources/
+
+# (10) URLS - URL ADDRESSES FOR API CALLS
+# - - - - - - - - - - - - - - - - - - - -
 urls:
     vsignals: "https://va.voice.va.gov/sso/va"
-    
+
+
+# (11) SCRIPT-SPECIFIC SETTINGS
+# - - - - - - - - - - - - - - - - - - - -
+# Resources and definitions for use within certain scripts. This includes
+# templates for messages, comments, or other output data.
 script:
   calculate:
     build_table:
@@ -515,8 +485,120 @@ script:
         Try expanding query date parameters to include more responses or choose
         a different time period (e.g., -t month, -t week)
         
+    ccr_format:
+      # Removed [sic] from format template as per stakeholder comment
+      feedback_comment: >-
+        "{Feedback_Comment}" ({RO} Regional Office, {ResponseDateTime})
+        
+    generate_main_bluf:
+      # Base text used to generate the BLUF for the first page of the Board report
+      autobluf: Compared to {before}, {A}. Within {current}, {B}.
+      
+      # AMA text contingent on comparison of current and previous periods
+      ama:
+        no_responses: there continue to be no responses for the AMA survey
+        higher_trust: AMA survey responses from {current} show higher Trust
+        lower_trust: AMA survey responses from {current} show lower Trust
+        insufficient_data: there was insufficient data to compare AMA surveys
+        no_change: AMA survey responses show no change in Trust
+        
+      # AMA and Legacy comparison text
+      ama_leg:
+        no_responses: >-
+          there were insufficient responses to provide 
+          a comparison between the surveys.
+          
+        higher_trust_no_ama: >-
+          Legacy survey responses show higher Trust 
+          than the AMA survey, which had no responses
+        
+        higher_trust_no_leg: >-
+          AMA survey responses show higher Trust
+          than the Legacy survey, which had no responses
+        
+        higher_trust_ama: the AMA survey shows higher Trust than the Legacy survey
+        higher_trust_leg: the Legacy survey shows higher Trust than the AMA survey
+        same_trust: both Legacy and AMA surveys show the same level of Trust  
+        
+    hilo:
+      # Comparison text for BLUFs in the body of the report by demographic
+      higher: showed higher
+      lower: showed lower
+      insufficient_data: were insufficient to calculate
+     
+    iloc:
+      no_data: >- 
+        (!) THIS CATEGORY HAS AN INSUFFICIENT NUMBER OF RESPONSES (!)
+      warning: "Warning: Insufficient data to analyze {} using method {}"
+    
+    survey_top:
+      question: >-
+          &ldquo;{question}&rdquo; (Board - {survey}, {score}%
+          &ldquo;Disagree&rdquo; or &ldquo;Strongly Disagree&rdquo;)
+      error: N/A (Insufficient data available)
+
+  canvas:
+    saveplot_a11:
+      # A-11 bar colors
+      hex:
+        bar:
+          - "#5572fa"
+          - "#c01e5c"
+          - "#9b2fae"
+          - "#20a6ac"
+          - "#55c4f5"
+          - "#4c2c92"
+          - "#fd9727"
+    
+    saveplot_tot:
+      # Survey colors
+      hex:
+        survey:
+          - "#a249a3"
+          - "#046eb5"
+          - "#23c8fa"
+          - "#225494"
+
+      # Red to Green fill
+        table:
+          - "#ffdbce"
+          - "#fff2cc"
+          - "#f2ffcc"
+          - "#ccffdd"
+          - "#99ffbb"
+
+  tot_definitions:
+    lineplot:
+      # Format: SurveyType and Hex Color for Chart
+      - [Appeal, "#23c8fa"]
+      - [Hearing, "#046eb5"]
+      - [Decision, "#225494"]
+      - [NOD, "#a249a3"]
+    
+
+  database:
+    Table:
+      params: >-
+        DRIVER={SQL Server};
+        SERVER=vhacdwa01.vha.med.va.gov;
+        DATABASE=VE_APG;
+        TRUSTED_CONNECTION=Yes
+      where:
+        type1: [like, notlike, eq, noteq, gt, gte, lt, lte]
+        type2: [isin, notin]
+        type3: [isnull, notnull]
+        
   report:
     build:
+      save_success: >-
+        Board report completed in
+        
+      save_error: >-
+        (!) ERROR: File open, did not save.
+        
+        
+        Completed in
+        
       infostring: >-
       
         {fp_label}: {fp}
@@ -524,8 +606,9 @@ script:
         {fn_label}: {fn}
         
         
-        Query for time period {delta} ending on {end} 
-        produced the following datasets:
+        Query for time period {delta} ending on {end} produced
+        
+        the following datasets:
         
         {d90}: {d90_shape}
         
@@ -541,7 +624,9 @@ script:
       
       infostring: >-
         
-        -------------------- Board Script --------------------
+        ---------------------------------
+        Board Script
+        ---------------------------------
         
         {} ending {}.
         
@@ -573,6 +658,12 @@ script:
         
           
   writer:
+    analyze:
+      comparison_datasets:
+        - dn, dp
+        - dn dp
+        - dn,dp
+
     get_date_func:
       patterns:
         - (w[e]{0,2}k(?!s)|7)
@@ -594,10 +685,4 @@ script:
       figure_2: Figure 2. Trust Scores by Survey Type from launch in October 2018 to present
     query:
        error: No rows pulled. Unable to analyze. Check query.
-
-#resources:
-#    connection_params: >-
-#      DRIVER={SQL Server};
-#      SERVER=vhacdwa01.vha.med.va.gov;
-#      DATABASE=VE_APG;TRUSTED_CONNECTION=Yes
 ...
